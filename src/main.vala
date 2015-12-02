@@ -5,13 +5,16 @@ public class Main : Object
 {
 	static int main (string[] args) 
 	{
-    	Gtk.init (ref args);
+		//window.set_border_width (12); //TODO: What is this?
 
+    	Gtk.init (ref args);    	
     	var window = new Gtk.Window ();
-		window.title = "Hello World!";
-		window.set_border_width (12);
+    	var board = new Board();
+
+    	//Window Properties
+		window.title = "vibbles";
 		window.set_position (Gtk.WindowPosition.CENTER);
-		window.set_default_size (350, 70);
+		window.set_default_size (board.Width, board.Height);
 		window.destroy.connect (Gtk.main_quit);
 
 
@@ -21,7 +24,9 @@ public class Main : Object
 		    button_hello.set_sensitive (false);
 		});
 
-		window.add (button_hello);
+		window.add (button_hello); //This is probably how we will add things
+
+		//Start Your Engines!
 		window.show_all ();
 		Gtk.main ();
 		return 0;
@@ -30,9 +35,18 @@ public class Main : Object
 
 public class Board
 {
-	int width = 300;
-	int delay = 100;
-	int height = 270;
-	int dotSize = 10;
-	int randPos = 26;
+	public int Width { get; set; }
+	public int Height { get; set; }	
+	public int Delay { get; set; }
+	public int DotSize { get; set; }
+	public int RandPos { get; set; }
+
+	public Board()
+	{
+		Width = 800;
+		Height = 400;
+		Delay = 100;
+		DotSize = 10;
+		RandPos = 26;
+	}
 }

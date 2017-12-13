@@ -6,12 +6,12 @@ public class Main : Gtk.Window
 {
 	public static int main (string[] args)
 	{
-	    //Get GTK ready to rock and roll
-    	Gtk.init (ref args);
-    	var window = new Gtk.Window();
-    	var board = new Board();
+    //Get GTK ready to rock and roll
+  	Gtk.init (ref args);
+  	var window = new Gtk.Window();
+  	var board = new Board();
 
-    	//Setup Our Window Properties
+  	//Setup Our Window Properties
 		window.title = "Vibbles!";
 		window.set_position (Gtk.WindowPosition.CENTER);
 		window.set_default_size (300, 270);

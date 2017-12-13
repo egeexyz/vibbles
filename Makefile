@@ -6,5 +6,6 @@ FILES = \
     src/main.vala
 
 all: $(FILES)
-	time valac $(FLAGS) $(PKGS) -o main $(FILES)
+	valac $(FLAGS) $(PKGS) -o main $(FILES)
+install:
 	./main

@@ -4,10 +4,10 @@ using Gdk;
 
 public class Main : Gtk.Window
 {
-	public static int main (string[] args) 
+	public static int main (string[] args)
 	{
 	    //Get GTK ready to rock and roll
-    	Gtk.init (ref args);    	
+    	Gtk.init (ref args);
     	var window = new Gtk.Window();
     	var board = new Board();
 
@@ -16,7 +16,7 @@ public class Main : Gtk.Window
 		window.set_position (Gtk.WindowPosition.CENTER);
 		window.set_default_size (300, 270);
 		window.set_events(Gdk.EventMask.BUTTON_PRESS_MASK);
-		
+
 		//Wire Up Our Signals
 		window.destroy.connect (Gtk.main_quit);
 		window.key_press_event.connect ((event) => {
@@ -25,7 +25,7 @@ public class Main : Gtk.Window
 			});
 
 		//Kick Off The GTK Loop And Away We Go!
-		window.icon = new Pixbuf.from_file ("vibbles.png");
+		window.icon = new Pixbuf.from_file ("src/assets/vibbles.png");
 		window.add(board);
 		window.show_all ();
 		Gtk.main ();
@@ -34,7 +34,7 @@ public class Main : Gtk.Window
 }
 
 public class Board : DrawingArea
-{	
+{
 	public int Width { get; set; }
 	public int Height { get; set; }
 	public int DotSize { get; set; }
@@ -48,8 +48,8 @@ public class Board : DrawingArea
 	private bool Right {get;set;}
 	private bool Up {get;set;}
 	private bool Down {get;set;}
-	private bool InGame{get;set;}	
-	public int Dots {get;set;}		
+	private bool InGame{get;set;}
+	public int Dots {get;set;}
 
 	public Pixbuf Dot { get; set; }
 	public Pixbuf Head { get; set; }
@@ -67,9 +67,9 @@ public class Board : DrawingArea
 		RandPos = 26;
 		AllDots = Width * Height / (DotSize * DotSize);
 
-		Dot = new Pixbuf.from_file("head.png");
-		Head = new Pixbuf.from_file("dot.png");
-		Apple = new Pixbuf.from_file("apple.png");
+		Dot = new Pixbuf.from_file("src/assets//head.png");
+		Head = new Pixbuf.from_file("src/assets//dot.png");
+		Apple = new Pixbuf.from_file("src/assets/apple.png");
 
 		Left = false;
 		Right = true;
@@ -82,7 +82,7 @@ public class Board : DrawingArea
 
 		InGame = true;
 		OnDraw();
-		InitGame();		
+		InitGame();
 	}
 
 	public bool OnTimer()
@@ -92,7 +92,7 @@ public class Board : DrawingArea
 			CheckApple();
 			CheckCollision();
 			Move();
-			queue_draw();			
+			queue_draw();
 			return true;
 		}
 		else
@@ -114,7 +114,7 @@ public class Board : DrawingArea
 		print (InGame.to_string());
 		if (InGame)
 			DrawObjects(this);
-		else 
+		else
 			GameOver(this);
 
 		return this;
@@ -123,8 +123,8 @@ public class Board : DrawingArea
 	public void DrawObjects(DrawingArea drawingArea)
 	{
 		this.draw.connect ((context) => {
-			context.set_source_rgb(0, 0, 0); 
-			context.paint();			
+			context.set_source_rgb(0, 0, 0);
+			context.paint();
 
 			cairo_set_source_pixbuf(context, Apple, AppleX, AppleY);
 			context.paint();
@@ -154,8 +154,8 @@ public class Board : DrawingArea
 			};
 			if (InGame == false)
 				GameOver(this);
-			return true;			
-		});		
+			return true;
+		});
 	}
 
 	public void GameOver(DrawingArea drawingArea)
@@ -204,7 +204,7 @@ public class Board : DrawingArea
 		while (z > 0)
 		{
 			if (z > 4 && X[0] == X[z] && Y[0] == Y[z])
-				InGame = false;			
+				InGame = false;
 			z = z - 1;
 		}
 
@@ -213,7 +213,7 @@ public class Board : DrawingArea
 		}
 
 		if (Y[0] < 0){
-	    	InGame = false;	    	
+	    	InGame = false;
 		}
 
 		if (X[0] > Width - DotSize){
@@ -230,7 +230,7 @@ public class Board : DrawingArea
 		var randomNumber = Random.int_range(0,RandPos);
 
 		AppleX = randomNumber * DotSize;
-		AppleY = randomNumber * DotSize; 	
+		AppleY = randomNumber * DotSize;
 	}
 
 	public void OnKeyPress(uint val)

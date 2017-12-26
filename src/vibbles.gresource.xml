@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/org/gnome/Vibbles">
+    <file>vibbles.png</file>
+    <file>apple.png</file>
+    <file>head.png</file>
+    <file>dot.png</file>
+  </gresource>
+</gresources>
